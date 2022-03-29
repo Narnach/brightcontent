@@ -3,6 +3,8 @@ Brightcontent
 
 ## Deprecated
 
+This fork addressess Rails v6.x compatibility in order to help migrate a project from Rails v5.2 to v6.x and Ruby 2.7, before migration to another admin panel. It has dropped Rails v4 support as well as pre-Ruby 2.5 support.
+
 Brightcontent is deprecated. We will only support this project for as far as it suits our own needs. If you're looking for a Rails admin panel to use, you might want to look [here](https://www.ruby-toolbox.com/categories/rails_admin_interfaces).
 
 [![Gem Version](https://badge.fury.io/rb/brightcontent.svg)](http://badge.fury.io/rb/brightcontent)
@@ -15,7 +17,7 @@ Brightcontent, yet another rails CMS / admin panel
 * No standard 'cms-modules', we hate those, making custom is easy enough
 * Built in the rails way, use your normals models, only controllers and views are provided
 * Only exception: Page model is provided with tree structure, sorting, hidden and pretty urls like `/services/cleaning/houses`
-* Supports Rails 4.2 and above
+* Supports Rails 5.2 and above
 * Strong Parameters support
 
 ![Brightcontent preview](doc/browser.jpg)

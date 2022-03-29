@@ -3,15 +3,13 @@ env:
   - GEM=attachments BUNDLE_WITHOUT=pages
   - GEM=pages
 rvm:
-  - 2.4.6
-  - 2.5.5
-  - 2.6.3
+  - 2.6.9
+  - 2.7.5
 gemfile:
-  - gemfiles/rails-4.2.x.gemfile
   - gemfiles/rails-5.2.x.gemfile
+  - gemfiles/rails-6.1.x.gemfile
 before_install:
-  - gem uninstall -v '>= 2' -i $(rvm gemdir)@global -ax bundler || true
-  - gem install bundler -v '< 2'
+  - gem install bundler -v '>= 2'
 before_script:
   - cd $GEM
 script:
