@@ -1,6 +1,6 @@
 name: RSpec
 
-on: [ push, pull_request ]
+on: push
 
 jobs:
   tests:
@@ -11,31 +11,22 @@ jobs:
         # Maintained versions: 2.7, 3.0, 3.1
         # Security updates only: 2.6 (EOL: 2022-03-31)
         # Source: https://www.ruby-lang.org/en/downloads/branches/
-        ruby: [ 2.6, 2.7 ]
+        ruby:
+          - "2.6"
+          - "2.7"
         gemfile:
           - rails-5.2.x
           - rails-6.1.x
-        # Add extra vars for each gem
-        include:
-          - gem: core
-            bundle-without: attachments:pages
-          - gem: attachments
-            bundle-without: pages
-          - gem: pages
-            bundle-without:
     env:
-      BUNDLE_WITHOUT: ${{ matrix.bundle-without }}
-      BUNDLE_GEMFILE: "${{ GITHUB_WORKSPACE }}/gemfiles/${{ matrix.gemfile }}.gemfile"
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/${{ matrix.gemfile }}.gemfile
       RAILS_ENV: test
+    name: "Ruby ${{ matrix.ruby }}, ${{ matrix.gemfile }}"
     steps:
       - uses: actions/checkout@v2
-      - run: cd ${{ matrix.gem }}
       - name: Set up Ruby & bundle gems
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
           bundler-cache: true
-      - name: Prepare DB
-        run: bundle exec rake db:schema:load
       - name: Run the tests
-        run: bundle exec rspec
+        run: bundle exec rake spec
